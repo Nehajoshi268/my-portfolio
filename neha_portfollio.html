@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Neha Joshi | Web Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0d1117;
+      color: #e4e4e4;
+      margin: 0;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #0d1117;
+      border-bottom: 1px solid #1f2937;
+    }
+    .navbar-brand {
+      font-weight: 700;
+      color: #fbbf24;
+    }
+    .navbar-nav .nav-link {
+      color: #e4e4e4;
+      margin-right: 1rem;
+      position: relative;
+      transition: 0.3s;
+    }
+    .navbar-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #38bdf8;
+      left: 0;
+      bottom: -3px;
+      transition: 0.3s;
+    }
+    .navbar-nav .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Buttons */
+    .btn-custom {
+      background: linear-gradient(135deg,#f59e0b,#f97316);
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: 0.3s ease;
+      border: none;
+      box-shadow: 0 0 15px rgba(249,115,22,0.5);
+    }
+    .btn-custom:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(249,115,22,0.8);
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(135deg,#1f2937,#0d1117);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .hero h1 {
+      font-weight: 700;
+      font-size: 3rem;
+      color: #fbbf24;
+      margin-bottom: 15px;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      color: #38bdf8;
+    }
+    .typing {
+      border-right: 2px solid #fbbf24;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 3s steps(22,end), blink 0.75s step-end infinite;
+    }
+    @keyframes typing { from {width: 0;} to {width: 100%;} }
+    @keyframes blink { 50% {border-color: transparent;} }
+
+    /* Sections */
+    .section {
+      padding: 4rem 0;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section-title {
+      text-align: center;
+      color: #f59e0b;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      position: relative;
+    }
+    .section-title::after {
+      content: "";
+      width: 60px;
+      height: 3px;
+      background: #38bdf8;
+      display: block;
+      margin: 10px auto;
+      border-radius: 2px;
+    }
+
+    /* Timeline About */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: auto;
+    }
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background: #f59e0b;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+    }
+    .timeline-item {
+      padding: 20px 30px;
+      position: relative;
+      background: #161b22;
+      border-radius: 12px;
+      width: 45%;
+      margin: 20px 0;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+    .timeline-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(249,115,22,0.5);
+    }
+    .timeline-item.left { left: 0; }
+    .timeline-item.right { left: 55%; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #38bdf8;
+      border: 3px solid #fff;
+      z-index: 1;
+    }
+    .timeline-item.left::before { right: -10px; }
+    .timeline-item.right::before { left: -10px; }
+
+    /* Cards */
+    .skill-box, .project-card, .resume-box {
+      background: #161b22;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: 0.4s ease;
+      height: 100%;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+    .skill-box:hover, .project-card:hover, .resume-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px rgba(249,115,22,0.5);
+    }
+    .skill-box i {
+      font-size: 2.5rem;
+      color: #f59e0b;
+      margin-bottom: 12px;
+    }
+    .project-card h5 {
+      color: #fbbf24;
+      margin-bottom: 12px;
+    }
+
+    /* Footer */
+    footer {
+      background: #0d1117;
+      color: #adb5bd;
+      padding: 40px 20px;
+      border-top: 1px solid #1f2937;
+    }
+    footer .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: auto;
+    }
+    footer .socials a {
+      margin-left: 15px;
+      color: #f59e0b;
+      font-size: 1.4rem;
+      transition: 0.3s;
+    }
+    footer .socials a:hover {
+      color: #38bdf8;
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">Neha Joshi</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <h1 class="typing">👋 Hi, I'm Neha Joshi</h1>
+    <p>MCA Graduate | Fullstack Developer</p>
+    <a href="#projects" class="btn btn-custom mt-4">See My Projects</a>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section container">
+    <h2 class="section-title">About Me</h2>
+    <div class="timeline">
+      <div class="timeline-item left">
+        <h5>🎓 MCA Graduate</h5>
+        <p>Completed Master of Computer Applications with strong focus on full-stack development.</p>
+      </div>
+      <div class="timeline-item right">
+        <h5>💼 Internship at Migratech</h5>
+        <p>Worked on live projects involving Django, Bootstrap & client-based solutions.</p>
+      </div>
+      <div class="timeline-item left">
+        <h5>💻 Internship at Digital Web Academy</h5>
+        <p>Hands-on Fullstack Development projects using Django, Bootstrap and JavaScript for real clients.</p>
+      </div>
+      <div class="timeline-item right">
+        <h5>🚀 Passion</h5>
+        <p>I enjoy problem-solving, continuous learning, and creating impactful projects.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section container">
+    <h2 class="section-title">Skills</h2>
+    <div class="row row-cols-2 row-cols-md-4 g-4">
+      <div class="col"><div class="skill-box"><i class="fab fa-html5"></i> HTML5</div></div>
+      <div class="col"><div class="skill-box"><i class="fab fa-css3-alt"></i> CSS3 / Bootstrap</div></div>
+      <div class="col"><div class="skill-box"><i class="fab fa-js-square"></i> JavaScript</div></div>
+      <div class="col"><div class="skill-box"><i class="fab fa-python"></i> Python</div></div>
+      <div class="col"><div class="skill-box"><i class="fas fa-leaf"></i> Django</div></div>
+      <div class="col"><div class="skill-box"><i class="fas fa-database"></i> MySQL / SQLite</div></div>
+      <div class="col"><div class="skill-box"><i class="fab fa-git-alt"></i> GitHub / Git</div></div>
+      <div class="col"><div class="skill-box"><i class="fas fa-code"></i> VS Code</div></div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section container">
+    <h2 class="section-title">Projects</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col"><div class="project-card"><h5>Ekomart Grocery Website</h5><p>Django-powered e-commerce grocery site with PayPal integration, cart, and search.</p></div></div>
+      <div class="col"><div class="project-card"><h5>Portfolio Website</h5><p>Clean, responsive personal portfolio to showcase skills and live projects.</p></div></div>
+      <div class="col"><div class="project-card"><h5>School Management System</h5><p>Web-based app for managing teachers, students, and courses using Django.</p></div></div>
+    </div>
+  </section>
+
+  <!-- Resume -->
+  <section id="resume" class="section container">
+    <h2 class="section-title">Resume</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="resume-box p-4">
+          <i class="fas fa-file-download"></i>
+          <h5 class="mb-3">Download My Resume</h5>
+          <a href="https://drive.google.com/file/d/1B5-u02jLLsv5bJQyyFK45fkDlbAYeapO/view?usp=sharing" target="_blank" class="btn btn-custom">Download PDF</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section container">
+    <h2 class="section-title">Contact Me</h2>
+    <div class="text-center mb-4">
+      <p class="fs-5 text-light">I'm open to new opportunities. Feel free to connect with me!</p>
+    </div>
+    <div class="d-flex justify-content-center gap-4 mb-4">
+      <a href="mailto:namitajoshi6561@gmail.com" target="_blank" style="color:#f59e0b; font-size:2.2rem;"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/yourgithub" target="_blank" style="color:#f59e0b; font-size:2.2rem;"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/neha-joshi-6392b62a3" target="_blank" style="color:#f59e0b; font-size:2.2rem;"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form style="background:#161b22; padding:25px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.5);">
+          <div class="mb-3"><label for="nameInput" class="form-label">Name</label><input type="text" class="form-control" id="nameInput" placeholder="Your name" required /></div>
+          <div class="mb-3"><label for="emailInput" class="form-label">Email address</label><input type="email" class="form-control" id="emailInput" placeholder="name@example.com" required /></div>
+          <div class="mb-3"><label for="messageInput" class="form-label">Message</label><textarea class="form-control" id="messageInput" rows="4" placeholder="Write your message here..." required></textarea></div>
+          <button type="submit" class="btn btn-custom w-100" style="font-size:1.1rem; padding:12px;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h3>Neha Joshi</h3>
+        <p>Web Developer • MCA Graduate</p>
+        <p>Dineshpur, Uttarakhand, India</p>
+      </div>
+      <div class="socials">
+        <a href="mailto:namitajoshi6561@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://github.com/yourgithub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/neha-joshi-6392b62a3"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+    <p class="text-center mt-3">&copy; 2025 Neha Joshi. Designed with ❤️</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Reveal sections on scroll
+    const sections = document.querySelectorAll('.section');
+    const revealSection = () => {
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop < window.innerHeight - 100) {
+          section.classList.add('show');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealSection);
+    window.addEventListener('load', revealSection);
+
+    // Contact form
+    const contactForm = document.querySelector('form');
+    if(contactForm){
+      contactForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        alert("Thank you for your message!");
+        this.reset();
+      });
+    }
+  </script>
+
+</body>
+</html>
